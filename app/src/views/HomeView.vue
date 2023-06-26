@@ -1,9 +1,10 @@
 <script setup lang="ts">
-import TheWelcome from '../components/TheWelcome.vue'
+import TheWelcome from "../components/TheWelcome.vue";
+import LoggedLayout from "../layouts/LoggedLayout.vue";
 </script>
 
 <template>
-  <main>
+  <logged-layout>
     <TheWelcome />
-  </main>
+  </logged-layout>
 </template>

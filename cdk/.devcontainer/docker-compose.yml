@@ -1,0 +1,10 @@
+version: "3.8"
+
+services:
+  tncalc_front_devcontainer:
+    container_name: tncalc_front_devcontainer
+    image: "mcr.microsoft.com/devcontainers/typescript-node:1-18"
+    volumes:
+      - ../..:/workspaces:cached
+      - ../.aws:/home/node/.aws:cached
+    command: sleep infinity
