@@ -35,7 +35,7 @@ export interface RecordItem {
 
 export interface RecordsPaginationResultDto {
   total: number;
-  page: RecordItem[];
+  items: RecordItem[];
 }
 
 export class UnauthorizedException extends Error {}
