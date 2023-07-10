@@ -21,7 +21,7 @@ const loadItems = async ({ page, itemsPerPage, search }) => {
       itemsPerPage,
       search
     );
-    records.value = result.page;
+    records.value = result.items;
     totalItems.value = result.total;
   } finally {
     loading.value = false;
@@ -108,6 +108,7 @@ const deleteItemConfirm = async () => {
       </v-card>
     </v-dialog>
     <v-data-table-server
+      id="records"
       :items-per-page="itemsPerPage"
       :page="page"
       :headers="headers"
