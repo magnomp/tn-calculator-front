@@ -84,8 +84,8 @@ const perform = async () => {
     });
   } else if (operation.value == OperationType.division) {
     return await api.division({
-      a: parseFloat(firstValue.value),
-      b: parseFloat(secondValue.value),
+      dividend: parseFloat(firstValue.value),
+      divisor: parseFloat(secondValue.value),
     });
   } else if (operation.value == OperationType.square_root) {
     return await api.sqrt(parseFloat(firstValue.value));
