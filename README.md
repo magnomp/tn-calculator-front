@@ -32,9 +32,13 @@ And this is it, the app is running on http://localhost:3000
 
 Although it wasn`t a requirement, I made it easy to deploy on AWS. To do so, open the "cdk" folder on VSCode.
 
-Now you must provide AWS credentials, to do so create a "credentials" file inside .aws folder (I assume you`re on CDK dev container), you can use credentials.sample as a base. The credentials you use must have enough permissions to manage S3, CloudFront, CloudWatch, CloudFormation, etc.
+Now you must provide AWS credentials, you can use aws-cli configure command for that. The credentials you use must have enough permissions to manage S3, CloudFront, CloudWatch, CloudFormation, etc.
+
+>aws configure
 
 If you just want to experiment the app and deployment process, I recommend a user with AdministratorAccess policy.
+
+Next, create a .env file at project root following the available .env.sample file, you must set the endpoint url there
 
 Next, you must bootstrap CDK on your AWS account, this is as simple as:
 (Not necessary if you already bootstraped and deployed the backend project on this account)
