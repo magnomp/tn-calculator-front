@@ -1,7 +1,10 @@
 <script setup lang="ts">
 import { useApi } from "@/api";
+import { useAuthTokenStore } from "@/stores/authToken";
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+
+const auth = useAuthTokenStore();
 
 const router = useRouter();
 
@@ -13,6 +16,7 @@ const login = async () => {
   const api = useApi();
   const loginResult = await api.login(username.value, password.value);
   if (loginResult) {
+    auth.setAuthToken(loginResult.accessToken);
     router.push({ name: "my-records" });
   }
 };
@@ -37,12 +41,27 @@ const signUp = () => {
   <div class="d-flex align-center justify-center" style="height: 100vh">
     <v-sheet width="400" class="mx-auto">
       <v-form fast-fail @submit.prevent="login">
-        <v-text-field v-model="username" label="User Name"></v-text-field>
+        <v-text-field
+          id="username"
+          v-model="username"
+          label="User Name"
+        ></v-text-field>
 
-        <v-text-field v-model="password" label="password"></v-text-field>
+        <v-text-field
+          id="password"
+          v-model="password"
+          label="password"
+        ></v-text-field>
         <a href="#" class="text-body-2 font-weight-regular">Forgot Password?</a>
 
-        <v-btn type="submit" color="primary" block class="mt-2">Sign in</v-btn>
+        <v-btn
+          id="login-button"
+          type="submit"
+          color="primary"
+          block
+          class="mt-2"
+          >Sign in</v-btn
+        >
       </v-form>
       <div class="mt-2">
         <p class="text-body-2">

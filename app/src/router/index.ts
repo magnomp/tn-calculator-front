@@ -12,11 +12,13 @@ const router = createRouter({
     {
       path: "/",
       name: "my-records",
+      meta: { requiresAuth: true },
       component: () => import("../pages/MyRecordsPage.vue"),
     },
     {
       path: "/newoperation",
       name: "new-operation",
+      meta: { requiresAuth: true },
       component: () => import("../pages/NewOperationPage.vue"),
     },
   ],

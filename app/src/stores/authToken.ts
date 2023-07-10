@@ -39,9 +39,13 @@ export const useAuthTokenStore = defineStore("authTokenStore", {
     async refresh(): Promise<string | undefined> {
       const result = await client.post("/auth/refresh");
       console.log("refresh result: ", result);
-      this.setAuthToken(result.data["accessToken"]);
-
-      return result.data["accessToken"];
+      if (result.status == 200) {
+        console.log("Token renewed");
+        this.setAuthToken(result.data["accessToken"]);
+        return result.data["accessToken"];
+      } else {
+        console.log("Couldn`t renew token");
+      }
     },
 
     async getAuthToken(): Promise<string | undefined> {
