@@ -23,9 +23,9 @@ export const useAuthTokenStore = defineStore("authTokenStore", {
     setAuthToken(token: string | undefined) {
       this.authToken = token;
       if (token) {
-        const decoded = jwt_decode(token);
-        this.expiresAt = decoded["exp"];
-        this.username = decoded["email"];
+        const decoded = jwt_decode<{ exp: number; email: string }>(token);
+        this.expiresAt = decoded.exp;
+        this.username = decoded.email;
       }
     },
     async logout() {
