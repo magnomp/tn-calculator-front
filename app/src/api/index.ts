@@ -1,5 +1,11 @@
 import { useAuthTokenStore } from "@/stores/authToken";
+import { AxiosResponse } from "axios";
 import { client } from "../axios";
+
+type ApiError = {
+  error: string;
+  message: string;
+};
 
 export enum OperationType {
   addition = "addition",
@@ -95,20 +101,24 @@ export class TnCalcApi {
   }
 
   private async perform<Type>(operation: string, params: any): Promise<Type> {
-    const result = await client.post<Type>(`/operations/${operation}`, params, {
-      headers: {
-        Authorization: `Bearer ${await this.authTokenStore.getAuthToken()}`,
-      },
-    });
+    const result = await client.post<Type | ApiError>(
+      `/operations/${operation}`,
+      params,
+      {
+        headers: {
+          Authorization: `Bearer ${await this.authTokenStore.getAuthToken()}`,
+        },
+      }
+    );
 
-    if (result.status == 400) {
+    if (isSuccess(result)) return result.data;
+    else if (isNotSuccess(result)) {
       if (result.data.error == "not-enough-balance")
         throw new NotEnoughBalanceException();
       else if (result.data.error == "Bad Request")
         throw new BadRequestException(result.data.message);
-      else throw new Error();
     }
-    return result.data;
+    throw new Error();
   }
 
   async addition(operands: TwoOperands): Promise<number> {
@@ -138,4 +148,16 @@ export class TnCalcApi {
 
 export function useApi() {
   return new TnCalcApi();
+}
+
+function isSuccess<T>(
+  response: AxiosResponse<T | ApiError>
+): response is AxiosResponse<T> {
+  return response.status == 200;
+}
+
+function isNotSuccess<T>(
+  response: AxiosResponse<T | ApiError>
+): response is AxiosResponse<ApiError> {
+  return response.status == 400;
 }
