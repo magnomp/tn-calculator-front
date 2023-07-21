@@ -17,6 +17,8 @@ const secondValue = ref(0);
 const snackText = ref<string | undefined>("");
 const showSnack = ref(false);
 
+const loading = ref(false);
+
 const firstLabel = computed(() => {
   switch (operation.value) {
     case OperationType.addition:
@@ -69,26 +71,26 @@ const secondVisible = computed(() => {
 const perform = async () => {
   if (operation.value == OperationType.addition) {
     return await api.addition({
-      a: parseFloat(firstValue.value),
-      b: parseFloat(secondValue.value),
+      a: firstValue.value,
+      b: secondValue.value,
     });
   } else if (operation.value == OperationType.subtraction) {
     return await api.subtraction({
-      a: parseFloat(firstValue.value),
-      b: parseFloat(secondValue.value),
+      a: firstValue.value,
+      b: secondValue.value,
     });
   } else if (operation.value == OperationType.multiplication) {
     return await api.multiplication({
-      a: parseFloat(firstValue.value),
-      b: parseFloat(secondValue.value),
+      a: firstValue.value,
+      b: secondValue.value,
     });
   } else if (operation.value == OperationType.division) {
     return await api.division({
-      dividend: parseFloat(firstValue.value),
-      divisor: parseFloat(secondValue.value),
+      a: firstValue.value,
+      b: secondValue.value,
     });
   } else if (operation.value == OperationType.square_root) {
-    return await api.sqrt(parseFloat(firstValue.value));
+    return await api.sqrt(firstValue.value);
   } else if (operation.value == OperationType.random_string) {
     return await api.randomString();
   }
