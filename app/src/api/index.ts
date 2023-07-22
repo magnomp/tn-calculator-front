@@ -1,5 +1,5 @@
 import { useAuthTokenStore } from "@/stores/authToken";
-import { AxiosResponse } from "axios";
+import { type AxiosResponse } from "axios";
 import { client } from "../axios";
 
 type ApiError = {
