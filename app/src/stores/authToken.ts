@@ -4,8 +4,6 @@ import jwt_decode from "jwt-decode";
 
 let refreshPromise: Promise<string | undefined> | undefined;
 
-// This is intentionally apart from authStore because otherwise there
-// would be a circular dependency between axios and authStore
 export const useAuthTokenStore = defineStore("authTokenStore", {
   state: () => ({
     authToken: undefined as string | undefined,
