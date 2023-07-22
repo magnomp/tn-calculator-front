@@ -11,7 +11,7 @@ const records = ref<RecordItem[]>([]);
 const loading = ref(false);
 const totalItems = ref(0);
 
-const operationType = ref("");
+const operationType = ref<OperationType>();
 
 const loadItems = async ({ page, itemsPerPage, search }: any) => {
   loading.value = true;
@@ -28,7 +28,7 @@ const loadItems = async ({ page, itemsPerPage, search }: any) => {
   }
 };
 
-const headers = [
+const headers: any = [
   {
     title: "Operation",
     align: "start",
