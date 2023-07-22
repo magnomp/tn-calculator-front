@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import LoggedLayout from "../layouts/LoggedLayout.vue";
-import { RecordItem, useApi, OperationType } from "../api";
+import { type RecordItem, useApi, OperationType } from "../api";
 import { ref } from "vue";
 import { VDataTableServer } from "vuetify/labs/VDataTable";
 
@@ -13,7 +13,7 @@ const totalItems = ref(0);
 
 const operationType = ref("");
 
-const loadItems = async ({ page, itemsPerPage, search }) => {
+const loadItems = async ({ page, itemsPerPage, search }: any) => {
   loading.value = true;
   try {
     const result = await api.myRecords(
@@ -58,7 +58,7 @@ const headers = [
     align: "start",
     sortable: false,
     key: "date",
-    value: (item) => new Date(item["date"]).toLocaleString(),
+    value: (item: any) => new Date(item["date"]).toLocaleString(),
   },
   { title: "Actions", key: "actions", sortable: false },
 ];
@@ -68,7 +68,7 @@ const itemsPerPage = ref(10);
 const dialogDelete = ref(false);
 const recordIdToRemove = ref("");
 
-const deleteItem = (item) => {
+const deleteItem = (item: any) => {
   dialogDelete.value = true;
   recordIdToRemove.value = item.recordId;
 };
