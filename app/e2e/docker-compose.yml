@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  api:
+    build:
+      context: ../tn-calculator-api/app
+      dockerfile: Dockerfile
+    ports:
+      - 3000:3000
+    environment:
+      - name=value
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=tncalc
+      - POSTGRES_HOST=db
+      - POSTGRES_PORT=5432
+  db:
+    image: postgres:latest
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: tncalc
+    ports:
+      - 5432:5432
