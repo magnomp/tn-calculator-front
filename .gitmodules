@@ -1,0 +1,3 @@
+[submodule "app/tn-calculator-api"]
+	path = app/tn-calculator-api
+	url = git@github.com:magnomp/tn-calculator-api.git
