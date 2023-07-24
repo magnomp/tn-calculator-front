@@ -33,7 +33,7 @@ const headers: any = [
     title: "Operation",
     align: "start",
     sortable: false,
-    key: "operationType",
+    key: "operation",
   },
   {
     title: "User balance",
