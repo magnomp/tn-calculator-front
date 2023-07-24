@@ -20,6 +20,15 @@ Now, in order to open "app" or "cdk", just open the correspondent folder on VSCo
 
 Now, this can take some minutes, but thanks to the Dev Containers technology everything you need will be automatically provisioned for you.
 
+## Running e2e
+
+- Open "app" on VSCode
+- Run these two commands do setup Playwright, this is a one time only step
+> yarn playwright install
+> yarn playwright install-deps
+- Run the tests
+> yarn test:e2e
+
 ### Running locally
 
 - Open "app" folder on VSCode,

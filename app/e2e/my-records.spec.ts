@@ -32,8 +32,8 @@ test.beforeAll(async () => {
 
 test("When loaded page, should show my records", async ({ page }) => {
   const loginPage = new LoginPage(page);
-  loginPage.goto();
-  loginPage.doLogin(userId, "1234");
+  await loginPage.goto();
+  await loginPage.doLogin(userId, "1234");
 
   const myRecordsPage = new MyRecordsPage(page);
   await myRecordsPage.at();

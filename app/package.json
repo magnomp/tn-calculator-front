@@ -7,7 +7,9 @@
     "build": "run-p type-check build-only",
     "preview": "vite preview",
     "test:unit": "vitest",
+    "pretest:e2e": "docker compose -f e2e/docker-compose.yml up -d --build",
     "test:e2e": "playwright test",
+    "posttest:e2e": "docker compose down -f e2e/docker-compose.yml",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
     "lint": "eslint . --ext .vue,.js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix --ignore-path .gitignore"
